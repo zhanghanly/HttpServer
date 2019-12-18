@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<http>
+  <ip>49.232.24.142</ip>
+  <port>9000</port>
+  <threadNum>16</threadNum>
+</http>
