@@ -10,7 +10,7 @@ void PollDispatcher::add(void)
 
 }
 
-void PollDispatcher::del(void)
+void PollDispatcher::remove(void)
 {
 
 }

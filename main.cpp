@@ -1,6 +1,7 @@
 #include <iostream>
-#include "ConcreteBuffer.h"
+#include "Buffer.h"
 #include "HttpConfig.h"
+#include "HttpServer.h"
 
 int main()
 {
@@ -8,9 +9,11 @@ int main()
 	if (HttpConfig::get_instance()->init("./HttpServer.xml") == false)
 		std::cerr << "init xml error" << std::endl;
 
-	std::cout << HttpConfig::get_instance()->get_http_ip() << std::endl;
-	std::cout << HttpConfig::get_instance()->get_http_port() << std::endl;
-	std::cout << HttpConfig::get_instance()->get_thread_num() << std::endl;
+	HttpServer httpServer;
+	httpServer.init_http_server();
+	httpServer.start_http_server();
 
+
+	 
 	return 0;
 }

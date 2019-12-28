@@ -6,22 +6,32 @@ constexpr const char* CRLF = "\r\n";
 class Buffer
 {
 public:
-	~Buffer(void) {}
+	Buffer(void) {}
 	//往Buffer里写数据
-	virtual int buffer_append(void* data, int size) = 0;
+	int buffer_append(const void* data, int size);
 	//往Buffer里写字符串
-	virtual int buffer_append_string(char* data) = 0;
+	int buffer_append_string(const char* data);
 	//往Buffer里写一个字符
-	virtual int buffer_append_char(char data) = 0;
+	int buffer_append_char(char data);
 	//读socket的数据并写入Buffer
-	virtual int buffer_socket_read(int fd) = 0;
+	int buffer_socket_read(int fd);
 	//从Buffer中读取一个字符
-	virtual char buffer_read_char(void) = 0;
+	char buffer_read_char(void);
 	//在Buffer中寻找CRLF
-	virtual char* buffer_find_CRLF(void) = 0;
+	char* buffer_find_CRLF(void);
+	//Buffer可读的大小
+	int buffer_readable_size(void);
+	//使Buffer能容纳size个字符
+	void make_room(int size);
+	//Buffer可写的大小
+	int buffer_writeable_size(void);
+	//Buffer前面的空闲空间
+	int buffer_front_spare_size(void);
 
-	//创建一个具体的Buffer对象
-	static Buffer* createBuffer(void);
+	char* m_data;       //实际的数据
+	int m_totalSize;    //总的大小
+	int m_writeIndex;   //写入的位置
+	int m_readIndex;    //读取的位置
 };
 
 

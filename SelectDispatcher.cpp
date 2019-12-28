@@ -10,7 +10,7 @@ void SelectDispatcher::add(void)
 
 }
 
-void SelectDispatcher::del(void)
+void SelectDispatcher::remove(void)
 {
 
 }

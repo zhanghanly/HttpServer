@@ -8,7 +8,7 @@ class PollDispatcher : public Dispatcher
 public:
 	virtual void init(void) override;
 	virtual void add(void) override;
-	virtual void del(void) override;
+	virtual void remove(void) override;
 	virtual void update(void) override;
 	virtual void dispatch(void) override;
 	virtual void clear(void) override;
