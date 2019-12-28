@@ -12,8 +12,8 @@ public:
 	TCPconnectionHandlerImpl(std::shared_ptr<HttpHandler> sp) : m_httpHandler(sp) {}
 	virtual int connection_completed_callback(TCPconnection*) override;
 	virtual int message_callback(TCPconnection*) override;
-	virtual int write_completed_call_back(TCPconnection*) override;
-	virtual int connection_closed_call_back(TCPconnection*) override;
+	virtual int write_completed_callback(TCPconnection*) override;
+	virtual int connection_closed_callback(TCPconnection*) override;
 
 private:
 	std::shared_ptr<HttpRequest> m_httpRequest;

@@ -5,17 +5,17 @@ void SelectDispatcher::init(void)
 
 }
 
-void SelectDispatcher::add(void)
+void SelectDispatcher::add(const std::shared_ptr<Channel>& channel)
 {
 
 }
 
-void SelectDispatcher::remove(void)
+void SelectDispatcher::remove(const std::shared_ptr<Channel>& channel)
 {
 
 }
 
-void SelectDispatcher::update(void)
+void SelectDispatcher::update(const std::shared_ptr<Channel>& channel)
 {
 
 }

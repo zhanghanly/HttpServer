@@ -2,6 +2,7 @@
 #define DISPATCHER_H
 
 #include <map>
+#include <memory>
 #include "Channel.h"
 
 class Dispatcher

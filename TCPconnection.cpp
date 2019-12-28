@@ -20,6 +20,29 @@ void TCPconnection::write_callback(void* data)
 {
 	TCPconnection* ptr = (TCPconnection*)data;
 
+	std::shared_ptr<Buffer> output_buffer = ptr->m_output_buffer;
+	std::shared_ptr<Channel> channel = ptr->m_connected_channel;
+
+	ssize_t nwrited = write(channel->m_fd, output_buffer->m_data + output_buffer->m_readIndex,
+		output_buffer->buffer_readable_size());
+	if (nwrited > 0) {
+		//已读nwrited字节
+		output_buffer->m_readIndex += nwrited;
+		//如果数据完全发送出去，就不需要继续了
+		if (output_buffer->buffer_readable_size() == 0) {
+			channel->write_event_disable();
+		}
+		//回调writeCompletedCallBack
+		/*if (ptr->writeCompletedCallBack != NULL) {
+			tcpConnection->writeCompletedCallBack(tcpConnection);
+		}*/
+		ptr->m_tcp_connect_handler->write_completed_callback(ptr);
+	}
+	else {
+		std::cout << "handle_write for tcp connection" << std::endl; //tcpConnection->name);
+	}
+
+
 }
 
 //应用层调用入口

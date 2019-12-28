@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "TCPconnectionHandlerImpl.h"
+#include "TCPconnection.h"
 
 int TCPconnectionHandlerImpl::connection_completed_callback(TCPconnection* tcp)
 {
@@ -34,12 +35,12 @@ int TCPconnectionHandlerImpl::message_callback(TCPconnection* tcp)
 	}
 }
 
-int TCPconnectionHandlerImpl::write_completed_call_back(TCPconnection* tcp)
+int TCPconnectionHandlerImpl::write_completed_callback(TCPconnection* tcp)
 {
 	std::cout << "write completed" << std::endl;
 }
 
-int TCPconnectionHandlerImpl::connection_closed_call_back(TCPconnection* tcp)
+int TCPconnectionHandlerImpl::connection_closed_callback(TCPconnection* tcp)
 {
 	std::cout << "connection closed" << std::endl;
 }

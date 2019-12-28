@@ -5,17 +5,17 @@ void PollDispatcher::init(void)
 
 }
 
-void PollDispatcher::add(void)
+void PollDispatcher::add(const std::shared_ptr<Channel>& channel)
 {
 
 }
 
-void PollDispatcher::remove(void)
+void PollDispatcher::remove(const std::shared_ptr<Channel>& channel)
 {
 
 }
 
-void PollDispatcher::update(void)
+void PollDispatcher::update(const std::shared_ptr<Channel>& channel)
 {
 
 }

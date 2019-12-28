@@ -6,7 +6,7 @@ constexpr const char* CRLF = "\r\n";
 class Buffer
 {
 public:
-	Buffer(void) {}
+	Buffer(void);
 	//往Buffer里写数据
 	int buffer_append(const void* data, int size);
 	//往Buffer里写字符串

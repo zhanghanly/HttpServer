@@ -1,7 +1,9 @@
 #ifndef TCP_CONNECTION_HANDLER_H
 #define TCP_CONNECTION_HANDLER_H
 
-#include "TCPconnection.h"
+
+//前置声明, 防止重复包含
+class TCPconnection;
 
 class TCPconnectionHandler
 {
@@ -11,9 +13,9 @@ public:
 	//
 	virtual int message_callback(TCPconnection*) = 0;
 	//给客户端写数据完成的回调
-	virtual int write_completed_call_back(TCPconnection*) = 0;
+	virtual int write_completed_callback(TCPconnection*) = 0;
 	//套接字关闭的回调
-	virtual int connection_closed_call_back(TCPconnection*) = 0;
+	virtual int connection_closed_callback(TCPconnection*) = 0;
 };
 
 #endif

@@ -24,6 +24,7 @@ public:
 	void http_request_add_header(const std::string&, const std::string&);
 	//根据request请求判断是否需要关闭服务器-->客户端单向连接
 	int http_request_close_connection(void);
+	//重置一个request请求
 	void http_request_reset(void);
 
 	std::string version;
