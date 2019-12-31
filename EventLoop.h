@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <list>
+#include <thread>
 #include <mutex>
 #include <map>
 #include <string>
@@ -19,17 +20,23 @@ public:
 	void add_channel_event(std::shared_ptr<Channel>&);
 	void update_channel_event(std::shared_ptr<Channel>&);
 	void remove_channel_event(std::shared_ptr<Channel>&);
+	//重载==运算符, 用来判断两个EventLoop是否相等
+	bool operator==(const EventLoop&);
+	//是否是同属于一个线程
+	void is_write_sockpair(void);
+	//sockpair的读端处理函数
+	static int handle_wakeup(void *data);
 
 private:
 	void handle_pending_channel(void);
-	/*void pending_channel_add(void);
-	void pending_channel_remove(void);
-	void pending_channel_update(void);*/
 
 private:
 	std::shared_ptr<Dispatcher> m_dispatcher;
 	std::mutex m_mut;
 	std::list<std::shared_ptr<Channel>> m_channel_lst;
+	std::thread::id m_thread_id;      //启动该loop线程的线程ID
+	std::string m_name;
+	int m_socket_pair[2];
 };
 
 #endif

@@ -90,7 +90,8 @@ void EpollDispatcher::dispatch(void)
 			std::cout << "get message channel fd==" << m_ready_epoll_event[i].data.fd << std::endl;
 			std::shared_ptr<Channel> channel = m_fd_to_channel[m_ready_epoll_event[i].data.fd];
 			//让回调在一个线程中去执行
-			std::async(std::launch::async, channel->m_read_callback, channel->m_data);
+			//std::async(std::launch::async, channel->m_read_callback, channel->m_data);
+			channel->m_read_callback(channel->m_data);
 		}
 
 		if (m_ready_epoll_event[i].events & EPOLLOUT) {

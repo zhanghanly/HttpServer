@@ -5,12 +5,17 @@
 void TCPconnection::read_callback(void* data)
 {
 	TCPconnection* ptr = (TCPconnection*)data;
-	if (ptr->m_input_buffer->buffer_socket_read(ptr->m_connected_channel->m_fd) > 0) {
+	std::shared_ptr<Buffer> input_buffer = ptr->m_input_buffer;
+	int connected_fd = ptr->m_connected_channel->m_fd;
+
+	if (input_buffer->buffer_socket_read(connected_fd) > 0) {
+		//debug
+		//std::cout << input_buffer->m_data << std::endl;
 		ptr->m_tcp_connect_handler->message_callback(ptr);
 	}
 	//¶Ásocket·¢Éú´íÎó
 	else {
-		close(ptr->m_connected_channel->m_fd);
+		close(connected_fd);
 		ptr->m_event_loop->remove_channel_event(ptr->m_connected_channel);
 		delete ptr;
 	}

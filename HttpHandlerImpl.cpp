@@ -1,4 +1,5 @@
 #include <cstring>
+#include <iostream>
 #include <string>
 #include <cassert>
 #include "HttpHandler.h"
@@ -73,6 +74,7 @@ int HttpHandlerImpl::parse_http_request(std::shared_ptr<Buffer>& buffer,
 					strncpy(value, colon + 1, crlf - colon - 2);
 					value[crlf - colon - 2] = '\0';*/
 					std::string value(colon + 1, crlf - colon - 2);
+					//std::cout << "key=" << key << "value=" << value << std::endl;
 					//把(key, value)添加到请求头
 					request->http_request_add_header(key, value);
 
