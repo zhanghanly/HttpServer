@@ -52,6 +52,9 @@ void EpollDispatcher::remove(const std::shared_ptr<Channel>& channel)
 	if (epoll_ctl(m_epoll_fd, EPOLL_CTL_DEL, fd, &event) == -1)
 		std::cerr << "epoll_ctl delete fd failed " << strerror(errno) << std::endl;
 
+	//关闭该套接字   如果先close再删除则会报错
+	close(fd);
+
 	m_fd_to_channel.erase(fd);
 }
 
@@ -81,7 +84,7 @@ void EpollDispatcher::dispatch(void)
 	//yolanda_msgx("epoll_wait wakeup, %s", eventLoop->thread_name);
 	for (int i = 0; i < n; i++) {
 		if ((m_ready_epoll_event[i].events & EPOLLERR) || (m_ready_epoll_event[i].events & EPOLLHUP)) {
-			fprintf(stderr, "epoll error\n");
+			std::cerr << "epoll error, close fd" << std::endl;
 			close(m_ready_epoll_event[i].data.fd);
 			continue;
 		}

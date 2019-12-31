@@ -42,6 +42,9 @@ int TCPconnectionHandlerImpl::write_completed_callback(TCPconnection* tcp)
 
 int TCPconnectionHandlerImpl::connection_closed_callback(TCPconnection* tcp)
 {
-	std::cout << "connection closed" << std::endl;
+	std::cout << "connection closed fd=" << tcp->m_connected_channel->m_fd << std::endl;
+	//在事件轮询里面关闭套接字, 不然会报错
+	//关闭该连接套接字  
+	//close(tcp->m_connected_channel->m_fd);
 }
 

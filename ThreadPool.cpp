@@ -34,7 +34,7 @@ std::shared_ptr<EventLoop> ThreadPool::select_one_thread_loop(void)
 	if (m_thread_num > 0) {
 		//Ë³ÐòÑ¡È¡
 		if (++m_position >= m_thread_num)
-			m_position = -1;
+			m_position = 0;
 		//debug
 		std::cout << "m_position=" << m_position << std::endl;
 		selected = m_vect_event_loop[m_position];

@@ -20,9 +20,10 @@ public:
 		  m_input_buffer(new Buffer),
 		  m_output_buffer(new Buffer) 
 	{
+		std::cout << "Add connected channel successfully fd=" << fd << std::endl;
 		//把已连接的channel加入事件循环
 		m_event_loop->add_channel_event(m_connected_channel);
-		std::cout << "Add connected channel successfully fd=" << fd << std::endl;
+		
 	}
 	
 	//读回调

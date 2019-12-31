@@ -14,9 +14,10 @@ void TCPconnection::read_callback(void* data)
 		ptr->m_tcp_connect_handler->message_callback(ptr);
 	}
 	//¶Ásocket·¢Éú´íÎó
-	else {
-		close(connected_fd);
+	else{ 
+		//close(connected_fd);
 		ptr->m_event_loop->remove_channel_event(ptr->m_connected_channel);
+		ptr->m_tcp_connect_handler->connection_closed_callback(ptr);
 		delete ptr;
 	}
 }
