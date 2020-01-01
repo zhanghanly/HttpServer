@@ -94,7 +94,11 @@ void EpollDispatcher::dispatch(void)
 			std::shared_ptr<Channel> channel = m_fd_to_channel[m_ready_epoll_event[i].data.fd];
 			//让回调在一个线程中去执行
 			//std::async(std::launch::async, channel->m_read_callback, channel->m_data);
+			//执行读回调
 			channel->m_read_callback(channel->m_data);
+			//如果写回调是可以的, 就执行
+			if (channel->write_event_is_enabled())
+				channel->m_write_callback(channel->m_data);
 		}
 
 		if (m_ready_epoll_event[i].events & EPOLLOUT) {

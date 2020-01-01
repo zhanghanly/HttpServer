@@ -37,12 +37,14 @@ void TCPconnection::write_callback(void* data)
 		//如果数据完全发送出去，就不需要继续了
 		if (output_buffer->buffer_readable_size() == 0) {
 			channel->write_event_disable();
+			//回调
+			ptr->m_tcp_connect_handler->write_completed_callback(ptr);
 		}
 		//回调writeCompletedCallBack
 		/*if (ptr->writeCompletedCallBack != NULL) {
 			tcpConnection->writeCompletedCallBack(tcpConnection);
 		}*/
-		ptr->m_tcp_connect_handler->write_completed_callback(ptr);
+		
 	}
 	else {
 		std::cout << "handle_write for tcp connection" << std::endl; //tcpConnection->name);

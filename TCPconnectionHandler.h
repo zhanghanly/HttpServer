@@ -2,7 +2,7 @@
 #define TCP_CONNECTION_HANDLER_H
 
 
-//前置声明, 防止重复包含
+//前置声明, 防止互相包含
 class TCPconnection;
 
 class TCPconnectionHandler
