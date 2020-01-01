@@ -80,6 +80,7 @@ void EpollDispatcher::update(const std::shared_ptr<Channel>& channel)
 
 void EpollDispatcher::dispatch(void)
 {
+	//²»Éè³¬Ê±
 	int n = epoll_wait(m_epoll_fd, &m_ready_epoll_event[0], epoll_ready_event_num, -1);
 	//yolanda_msgx("epoll_wait wakeup, %s", eventLoop->thread_name);
 	for (int i = 0; i < n; i++) {

@@ -10,11 +10,12 @@
 #include "Dispatcher.h"
 #include "Channel.h"
 #include "EpollDispatcher.h"
+#include "SelectDispatcher.h"
 
 class EventLoop
 {
 public:
-	EventLoop(void) : m_dispatcher(new EpollDispatcher) {}
+	EventLoop(void) : m_dispatcher(new SelectDispatcher) {}
 	void init_with_name(const std::string&);
 	void start_loop(void);
 	void add_channel_event(std::shared_ptr<Channel>&);
