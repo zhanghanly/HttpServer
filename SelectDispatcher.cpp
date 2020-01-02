@@ -31,7 +31,7 @@ void SelectDispatcher::remove(const std::shared_ptr<Channel>& channel)
 	if (channel->m_events == EventType::write)
 		FD_CLR(fd, &m_write_set);
 
-	//关闭该套接字   如果先close再删除则会报错
+	//关闭该套接字 
 	close(fd);
 	//从map中删除
 	m_fd_to_channel.erase(fd);
