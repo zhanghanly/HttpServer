@@ -103,9 +103,9 @@ void EpollDispatcher::dispatch(void)
 		}
 
 		if (m_ready_epoll_event[i].events & EPOLLOUT) {
-			std::cout << "get message channel fd==" << m_ready_epoll_event[i].data.fd << std::endl;
-			std::shared_ptr<Channel> channel = m_fd_to_channel[m_ready_epoll_event[i].data.fd];
-			std::async(std::launch::async, channel->m_write_callback, channel->m_data);
+			//std::cout << "get message channel fd==" << m_ready_epoll_event[i].data.fd << std::endl;
+			//std::shared_ptr<Channel> channel = m_fd_to_channel[m_ready_epoll_event[i].data.fd];
+			//std::async(std::launch::async, channel->m_write_callback, channel->m_data);
 		}
 	}
 }

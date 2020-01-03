@@ -17,10 +17,14 @@ class EventLoop
 {
 public:
 	EventLoop(void) : m_dispatcher(new PollDispatcher) {}
+	//初始化EventLoop
 	void init_with_name(const std::string&);
 	void start_loop(void);
+	//添加一个channel
 	void add_channel_event(std::shared_ptr<Channel>&);
+	//更新一个channel
 	void update_channel_event(std::shared_ptr<Channel>&);
+	//删除一个channel
 	void remove_channel_event(std::shared_ptr<Channel>&);
 	//重载==运算符, 用来判断两个EventLoop是否相等
 	bool operator==(const EventLoop&);

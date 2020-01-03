@@ -81,6 +81,8 @@ void EventLoop::handle_pending_channel(void)
 		case ChannelType::update:
 			m_dispatcher->update(channel);
 			break;
+		default:
+			std::cerr << "unkonwn ChannelType" << std::endl;
 		}
 		//删除已经处理过的channel
 		m_channel_lst.pop_front();

@@ -8,6 +8,8 @@ void HttpHandlerImpl::response_to_request(std::shared_ptr<HttpRequest>& request,
 										  std::shared_ptr<HttpResponse>& response)
 {
 	const char* url = request->url.c_str();
+	//debug
+	//std::cout << "url=" << url << std::endl;
 	char* question = (char*)memmem(url, strlen(url), "?", 1);
 	//char* path = nullptr;
 	std::string path;
@@ -21,7 +23,8 @@ void HttpHandlerImpl::response_to_request(std::shared_ptr<HttpRequest>& request,
 		//strncpy(path, url, strlen(url));
 		path = std::string(url, strlen(url));
 	}
-
+	//debug
+	//std::cout << "path=" << path << std::endl;
 	if (strcmp(path.c_str(), "/") == 0) {
 		response->statusCode = HttpStatusCode::OK;
 		response->statusMessage = "OK";
@@ -70,11 +73,14 @@ int HttpHandlerImpl::parse_http_request(std::shared_ptr<Buffer>& buffer,
 					strncpy(key, start, colon - start);
 					key[colon - start] = '\0';*/
 					std::string key(start, colon - start);
+					//debug
+					//std::cout << "key=" << key << std::endl;
 					/*char *value = malloc(crlf - colon - 2 + 1);
 					strncpy(value, colon + 1, crlf - colon - 2);
 					value[crlf - colon - 2] = '\0';*/
-					std::string value(colon + 1, crlf - colon - 2);
-					//std::cout << "key=" << key << "value=" << value << std::endl;
+					std::string value(colon + 2, crlf - colon - 1);
+					//debug
+					//std::cout << "value=" << value << std::endl;
 					//把(key, value)添加到请求头
 					request->http_request_add_header(key, value);
 
